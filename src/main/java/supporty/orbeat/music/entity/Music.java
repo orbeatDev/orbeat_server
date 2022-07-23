@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import supporty.orbeat.artist.entity.Artist;
-import supporty.orbeat.music.entity.enumTypes.Status;
+import supporty.orbeat.common.enumTypes.Status;
 import supporty.orbeat.musicselect.entity.MusicSelect;
 import supporty.orbeat.user.entity.BaseTimeEntity;
 

@@ -1,4 +1,4 @@
-package supporty.orbeat.config;
+package supporty.orbeat.common;
 
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -9,7 +9,7 @@ import lombok.Getter;
 
 import java.util.List;
 
-import static supporty.orbeat.config.BaseResponseStatus.SUCCESS;
+import static supporty.orbeat.common.BaseResponseStatus.SUCCESS;
 
 @Getter
 @AllArgsConstructor

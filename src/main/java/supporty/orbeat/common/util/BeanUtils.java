@@ -1,4 +1,4 @@
-package supporty.orbeat.util;
+package supporty.orbeat.common.util;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

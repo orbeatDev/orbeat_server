@@ -1,4 +1,4 @@
-package supporty.orbeat.config;
+package supporty.orbeat.common;
 
 import lombok.Getter;
 

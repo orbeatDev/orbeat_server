@@ -1,8 +1,9 @@
-package supporty.orbeat.config;
+package supporty.orbeat.common.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import supporty.orbeat.common.BaseResponseStatus;
 
 @Getter
 @Setter

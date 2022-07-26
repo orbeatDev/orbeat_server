@@ -1,5 +1,6 @@
 package supporty.orbeat.advice;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -12,9 +13,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
 
 /**
  * exception을 처리하는 advice class
@@ -48,7 +46,7 @@ public class ApiControllerAdvice {
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     public ResponseEntity methodArgumentNotValidException(MethodArgumentNotValidException e, HttpServletRequest httpServletRequest) {
 
-        List<ErrorDetail> errorList = new ArrayList<>();
+        List<ErrorResponse.FieldError> errorList = new ArrayList<>();
 
         BindingResult bindingResult = e.getBindingResult();
         bindingResult.getAllErrors().forEach(error -> {
@@ -57,7 +55,7 @@ public class ApiControllerAdvice {
             String message = field.getDefaultMessage();
             String value = field.getRejectedValue().toString();
 
-            ErrorDetail errorMessage = new ErrorDetail();
+            ErrorResponse.FieldError errorMessage = new ErrorResponse.FieldError();
             errorMessage.setField(fileName);
             errorMessage.setMessage(message);
             errorMessage.setInvalidValue(value);
@@ -80,37 +78,37 @@ public class ApiControllerAdvice {
      *
      * @param e : Column 제악조건 에러
      */
-    @ExceptionHandler(value = ConstraintViolationException.class)
-    public ResponseEntity constraintViolationException(ConstraintViolationException e, HttpServletRequest httpServletRequest) {
-        //여러가지 에러를 가지고 있음
-        List<ErrorDetail> errorList = new ArrayList<>();
-
-        e.getConstraintViolations().forEach(error -> {
-
-            Stream<Path.Node> stream = StreamSupport.stream(error.getPropertyPath().spliterator(), false);
-            List<Path.Node> list = stream.collect(Collectors.toList());
-
-            String field = list.get(list.size() - 1).getName();
-            String message = error.getMessage();
-            String invalidValue = error.getInvalidValue().toString();
-
-            ErrorDetail errorMessage = new ErrorDetail();
-            errorMessage.setField(field);
-            errorMessage.setMessage(message);
-            errorMessage.setInvalidValue(invalidValue);
-
-            errorList.add(errorMessage);
-
-        });
-
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setErrorList(errorList);
-        errorResponse.setRequestUrl(httpServletRequest.getRequestURI());
-        errorResponse.setStatusCode(HttpStatus.BAD_REQUEST.toString());
-        errorResponse.setResultCode("FAIL");
-
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
-    }
+//    @ExceptionHandler(value = ConstraintViolationException.class)
+//    public ResponseEntity constraintViolationException(ConstraintViolationException e, HttpServletRequest httpServletRequest) {
+//        //여러가지 에러를 가지고 있음
+//        List<ErrorDetail> errorList = new ArrayList<>();
+//
+//        e.getConstraintViolations().forEach(error -> {
+//
+//            Stream<Path.Node> stream = StreamSupport.stream(error.getPropertyPath().spliterator(), false);
+//            List<Path.Node> list = stream.collect(Collectors.toList());
+//
+//            String field = list.get(list.size() - 1).getName();
+//            String message = error.getMessage();
+//            String invalidValue = error.getInvalidValue().toString();
+//
+//            ErrorDetail errorMessage = new ErrorDetail();
+//            errorMessage.setField(field);
+//            errorMessage.setMessage(message);
+//            errorMessage.setInvalidValue(invalidValue);
+//
+//            errorList.add(errorMessage);
+//
+//        });
+//
+//        ErrorResponse errorResponse = new ErrorResponse();
+//        errorResponse.setErrorList(errorList);
+//        errorResponse.setRequestUrl(httpServletRequest.getRequestURI());
+//        errorResponse.setStatusCode(HttpStatus.BAD_REQUEST.toString());
+//        errorResponse.setResultCode("FAIL");
+//
+//        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+//    }
 
     /**
      * validation 에러를 잡고싶을 경우

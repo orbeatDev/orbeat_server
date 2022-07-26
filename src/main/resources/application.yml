@@ -3,16 +3,16 @@ spring:
     pathmatch:
       matching-strategy: ant_path_matcher
   datasource:
-    url: jdbc:mysql://localhost:3330/orbeat?useSSL=false&serverTimezone=Asia/Seoul
+    url: jdbc:mysql://orbeat-db.cwhxhn3ordjr.ap-northeast-2.rds.amazonaws.com/orbeat?useSSL=false&serverTimezone=Asia/Seoul
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
-    password: ''
+    username: orbeat_dev
+    password: orbeat1q2w3e!
   messages:
     basename: i18n/exception
     encoding: UTF-8
   jpa:
     hibernate:
-      ddl-auto: create # create :  Re-create at the time the application runs
+      #ddl-auto: create # create :  Re-create at the time the application runs
     properties:
       hibernate:
         #show_sql: true Output from systemout / In a production environment, logs should be taken through a logger

@@ -1,12 +1,10 @@
 package supporty.orbeat.user.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import supporty.orbeat.music.entity.Music;
 import supporty.orbeat.musicselect.entity.MusicSelect;
+import supporty.orbeat.user.dto.SignUpReq;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,6 +12,7 @@ import java.util.List;
 
 @Entity
 @Getter
+@Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString(of = {"userId","userName"})
 @Table(name = "user")
@@ -28,5 +27,11 @@ public class User extends BaseTimeEntity{
     @JsonManagedReference
     @OneToMany(mappedBy = "user")
     private List<MusicSelect> musicSelects = new ArrayList<>();
+
+    public static User SignUpUser(SignUpReq signUpReq){
+        return User.builder()
+                .userName(signUpReq.getNickname())
+                .build();
+    }
 
 }

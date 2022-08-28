@@ -9,14 +9,8 @@ import supporty.orbeat.artist.dto.SignUpArtistReq;
 import supporty.orbeat.artist.dto.SignupArtistRes;
 import supporty.orbeat.artist.entity.Artist;
 import supporty.orbeat.artist.repository.ArtistRepository;
-import supporty.orbeat.user.dto.SignUpReq;
-import supporty.orbeat.user.dto.SignUpRes;
-import supporty.orbeat.user.entity.User;
-
-import java.util.Objects;
 
 import static supporty.orbeat.artist.entity.Artist.createArtist;
-import static supporty.orbeat.user.entity.User.SignUpUser;
 
 @Service
 @Transactional

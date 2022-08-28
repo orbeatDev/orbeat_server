@@ -18,7 +18,6 @@ public class MusicSelect implements Serializable {
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "music_id")
-    @JoinColumn(name = "user_id")
     private Music music;
 
     @Id

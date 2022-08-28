@@ -24,13 +24,12 @@ public class UserController {
 
     @ApiOperation(value = "유저 생성", notes = "유저를 생성한다.")
     @PostMapping("/sign-up") @ResponseBody
-    public BaseResponse<SignUpRes> SingUp(@RequestBody @Valid SignUpReq signUpReq, Errors errors){
+    public BaseResponse SingUp(@RequestBody @Valid SignUpReq signUpReq, Errors errors){
         if(errors.hasErrors()) {
             BaseException exception = ValidationExceptionProvider.throwValidError(errors);
             return new BaseResponse<>(exception.getStatus());
         }else{
-            SignUpRes signUpUser = userService.SignUp(signUpReq);
-            return new BaseResponse<>(signUpUser);
+            return userService.signUp(signUpReq);
         }
     }
 }

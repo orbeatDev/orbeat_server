@@ -25,7 +25,8 @@ public enum BaseResponseStatus {
     /**
      * 500: RESPONSE 오류
      */
-    RESPONSE_ERROR(false,500,"값을 불러오는데 실패했습니다.");
+    RESPONSE_ERROR(false,500,"값을 불러오는데 실패했습니다."),
+    INTERNAL_SERVER_ERROR(false, 501, "서버내에 문제가 발생하였습니다");
 
 
 

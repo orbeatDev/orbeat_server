@@ -18,6 +18,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @ToString(of = {"artistId","sns","introduction"})
 @Table(name = "artist")
 public class Artist extends BaseTimeEntity {

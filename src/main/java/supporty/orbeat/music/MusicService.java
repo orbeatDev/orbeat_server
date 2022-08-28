@@ -18,7 +18,6 @@ import supporty.orbeat.user.entity.User;
 import java.util.Objects;
 
 import static supporty.orbeat.music.entity.Music.createMusic;
-import static supporty.orbeat.user.entity.User.SignUpUser;
 
 @Service
 @Transactional

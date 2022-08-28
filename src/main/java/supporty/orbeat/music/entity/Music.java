@@ -20,6 +20,7 @@ import java.util.List;
 @Setter
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @ToString(of = {"musicId", "musicUrl", "thumbnailUrl", "title", "videoUrl", "selectedCount", "genre"})
 @Table(name = "music")
 public class Music extends BaseTimeEntity {
@@ -51,7 +52,6 @@ public class Music extends BaseTimeEntity {
     @OneToMany(mappedBy = "music")
     private List<MusicSelect> musicSelects = new ArrayList<>();
 
-    @Id
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "artistId")
     private Artist artist;

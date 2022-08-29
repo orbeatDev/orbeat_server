@@ -1,21 +1,19 @@
 package supporty.orbeat.user.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-import supporty.orbeat.music.entity.Music;
-import supporty.orbeat.musicselect.entity.MusicSelect;
+import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
+@Setter
+@Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@ToString(of = {"userId","userName"})
+@AllArgsConstructor
+@ToString(of = {"userId","nickname"})
 @Table(name = "user")
 public class User extends BaseTimeEntity{
     @Id
@@ -23,10 +21,14 @@ public class User extends BaseTimeEntity{
     private Long userId;
 
     @Column(nullable = false)
-    private String userName;
+    private String nickname;
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "user")
-    private List<MusicSelect> musicSelects = new ArrayList<>();
+    @CreatedDate
+    @Column(nullable = false)
+    private LocalDateTime createdAt;
+
+    @LastModifiedDate
+    @Column(nullable = false)
+    private LocalDateTime updatedAt;
 
 }

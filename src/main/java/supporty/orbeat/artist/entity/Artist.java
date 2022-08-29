@@ -1,39 +1,42 @@
 package supporty.orbeat.artist.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
+import supporty.orbeat.artist.ArtistController;
+import supporty.orbeat.artist.dto.SignUpArtistReq;
 import supporty.orbeat.common.enumTypes.Status;
+import supporty.orbeat.music.dto.SaveMusicReq;
 import supporty.orbeat.music.entity.Music;
 import supporty.orbeat.user.entity.BaseTimeEntity;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Builder
 @Getter
+@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@ToString(of = {"artistId","sns","introduction"})
+@AllArgsConstructor
 @Table(name = "artist")
-public class Artist extends BaseTimeEntity {
+public class Artist {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long artistId;
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Status status;
-
-    @JsonManagedReference
-    @OneToMany(mappedBy = "artist")
-    private List<Music> musicList = new ArrayList<>();
-
-    private String sns;
+    private String artistName;
 
     private String introduction;
 
+    private String snsUrl;
+
+    @Column(nullable = false)
+    private String status;
+
+    private LocalDateTime createdAt;
+
+    private LocalDateTime updatedAt;
 }

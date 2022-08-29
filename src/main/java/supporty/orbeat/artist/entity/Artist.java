@@ -10,6 +10,7 @@ import supporty.orbeat.music.entity.Music;
 import supporty.orbeat.user.entity.BaseTimeEntity;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,38 +20,23 @@ import java.util.List;
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-@ToString(of = {"artistId","sns","introduction"})
 @Table(name = "artist")
-public class Artist extends BaseTimeEntity {
+public class Artist {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long artistId;
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Status status;
-
-    @JsonManagedReference
-    @OneToMany(mappedBy = "artist")
-    private List<Music> musicList = new ArrayList<>();
-
-    @Column(nullable = false)
     private String artistName;
-
-    private String sns;
 
     private String introduction;
 
-    private String youtubeAddress;
+    private String snsUrl;
 
-    public static Artist createArtist(SignUpArtistReq signUpArtistReq) {
-        return Artist.builder()
-                .status(Status.Y)
-                .sns(signUpArtistReq.getSns())
-                .artistName(signUpArtistReq.getArtistName())
-                .introduction(signUpArtistReq.getIntroduction())
-                .youtubeAddress(signUpArtistReq.getYoutubeAddress())
-                .build();
-    }
+    @Column(nullable = false)
+    private String status;
+
+    private LocalDateTime createdAt;
+
+    private LocalDateTime updatedAt;
 }

@@ -21,7 +21,6 @@ import java.util.List;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-@ToString(of = {"musicId", "musicUrl", "thumbnailUrl", "title", "videoUrl", "selectedCount", "genre"})
 @Table(name = "music")
 public class Music extends BaseTimeEntity {
 
@@ -30,10 +29,16 @@ public class Music extends BaseTimeEntity {
     private Long musicId;
 
     @Column(nullable = false)
+    private String genre;
+
+    @Column(nullable = false)
     private String musicUrl;
 
     @Column(nullable = false)
-    private Status status;
+    private Long selectedCount;
+
+    @Column(nullable = false)
+    private String status;
 
     private String thumbnailUrl;
 
@@ -42,29 +47,5 @@ public class Music extends BaseTimeEntity {
 
     private String videoUrl;
 
-    @Column(nullable = false)
-    private Long selectedCount;
-
-    @Column(nullable = false)
-    private String genre;
-
-    @JsonManagedReference
-    @OneToMany(mappedBy = "music")
-    private List<MusicSelect> musicSelects = new ArrayList<>();
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "artistId")
-    private Artist artist;
-
-    public static Music createMusic(SaveMusicReq saveMusicReq, Artist artist) {
-        return Music.builder()
-                .musicUrl(saveMusicReq.getMusicUrl())
-                .status(Status.Y)
-                .thumbnailUrl(saveMusicReq.getThumbnailUrl())
-                .title(saveMusicReq.getTitle())
-                .videoUrl(saveMusicReq.getVideoUrl())
-                .genre(saveMusicReq.getGenre())
-                .artist(artist)
-                .build();
-    }
+    private Long artistId;
 }

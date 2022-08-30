@@ -1,15 +1,18 @@
 package supporty.orbeat.musicselect;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import supporty.orbeat.common.BaseResponse;
 import supporty.orbeat.common.BaseResponseStatus;
 import supporty.orbeat.music.entity.Music;
 import supporty.orbeat.music.repository.MusicRepository;
 import supporty.orbeat.musicselect.dto.BattleReq;
+import supporty.orbeat.musicselect.dto.SaveBattleReq;
 import supporty.orbeat.musicselect.entity.MusicSelect;
 import supporty.orbeat.musicselect.repository.MusicSelectRepository;
 
+@Slf4j
 @Service
 @AllArgsConstructor
 public class MusicSelectService {
@@ -79,5 +82,24 @@ public class MusicSelectService {
                 break;
         }
         return null;
+    }
+
+    public BaseResponse saveMusicSelectInfo(SaveBattleReq saveBattleReq) {
+        MusicSelect musicSelect = new MusicSelect();
+        try {
+            musicSelect.setMusicId(saveBattleReq.getMusicId());
+            musicSelect.setNickname(saveBattleReq.getNickname());
+            musicSelect.setRound(saveBattleReq.getRoundNumber());
+            musicSelectRepository.save(musicSelect);
+
+            //final 선택된 음악 count + 1
+            if(saveBattleReq.getRoundNumber() == 7) {
+                musicRepository.increaseSelectedCount(saveBattleReq.getMusicId());
+            }
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            return new BaseResponse(BaseResponseStatus.INTERNAL_SERVER_ERROR);
+        }
+        return new BaseResponse(BaseResponseStatus.SUCCESS);
     }
 }

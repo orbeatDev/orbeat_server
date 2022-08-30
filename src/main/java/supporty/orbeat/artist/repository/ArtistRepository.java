@@ -5,5 +5,5 @@ import supporty.orbeat.artist.entity.Artist;
 import supporty.orbeat.user.entity.User;
 
 public interface ArtistRepository extends JpaRepository<Artist,Long> {
-
+    public Artist findByArtistId(Long artisId);
 }

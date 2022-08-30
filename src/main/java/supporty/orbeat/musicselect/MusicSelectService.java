@@ -91,6 +91,11 @@ public class MusicSelectService {
             musicSelect.setNickname(saveBattleReq.getNickname());
             musicSelect.setRound(saveBattleReq.getRoundNumber());
             musicSelectRepository.save(musicSelect);
+
+            //final 선택된 음악 count + 1
+            if(saveBattleReq.getRoundNumber() == 7) {
+                musicRepository.increaseSelectedCount(saveBattleReq.getMusicId());
+            }
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             return new BaseResponse(BaseResponseStatus.INTERNAL_SERVER_ERROR);

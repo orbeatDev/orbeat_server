@@ -1,0 +1,37 @@
+/* .onboarding__wrap */
+.on-boarding__wrap {display: block; width: 100%; height: 100%; background-color: #000; font-family: 'Poppins'; }
+
+/* header */
+.on-boarding__wrap .header__wrap { padding-top: 16px; font-size: 0; }
+.on-boarding__wrap .header__wrap .header__content { display: inline-block; width: 50%; text-align: center; vertical-align: middle; }
+.on-boarding__wrap .header__wrap .title { font-size: 31px; color: #fff; }
+.on-boarding__wrap .header__wrap .details { font-size: 18px; color: #fff; }
+
+/* contents */
+.on-boarding__wrap .content__wrap { height: calc(100% - 63px) }
+.on-boarding__wrap .content__wrap .content__area { display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; }
+.on-boarding__wrap .content__wrap .content__area .text { font-size:36px; color: #fff; line-height: 49px; text-align: center; }
+.on-boarding__wrap .content__wrap .content__area .contents strong { background: -webkit-linear-gradient(#7544FF, #7969FF, #5547C5); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.on-boarding__wrap .content__wrap .form__wrap input { width: 308px; height: 52px; margin: 50px auto 0; background: #282828; border: 1px solid #5547C5; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 12px; font-size: 13px; color: #fff; text-align: center; }
+.on-boarding__wrap .content__wrap .form__wrap input::placeholder { font-size: 13px; color: #fff; text-align: center; }
+.on-boarding__wrap .content__wrap .form__wrap input::-ms-input-placeholder { font-size: 13px; color: #fff; text-align: center; }
+.on-boarding__wrap .content__wrap .form__wrap button { display: block; width: 192px; height: 60px; margin: 27px auto 0; background: #5547C5; border-radius: 16px; font-size: 18px; color: #fff; }
+.on-boarding__wrap .content__wrap .desktop-img { margin-left: 78px;}
+
+@media screen and (max-width : 1024px) {
+    .on-boarding__wrap .content__wrap .form__wrap input { width: 100%; font-size: 18px; }
+    .on-boarding__wrap .content__wrap .form__wrap input::placeholder { font-size: 18px; }
+    .on-boarding__wrap .content__wrap .form__wrap input::-ms-input-placeholder { font-size: 18px; }
+    .on-boarding__wrap .content__wrap .form__wrap button { width: 100%; margin-top: 16px; }
+    .on-boarding__wrap .content__wrap .desktop-img {/* margin: 116px 0 76px; */ margin: 58px 0 38px; }
+}
+@media screen and (max-width : 767px) {
+    .on-boarding__wrap .content__wrap .content__area .title { width: 100%; font-size: 36px; color: #fff; text-align: center; }
+    .on-boarding__wrap .content__wrap .content__area .text { margin-top: 32px; font-size: 32px; line-height: 42px; }
+    .on-boarding__wrap .content__wrap .form__wrap { padding: 0 20px; }
+    .on-boarding__wrap .content__wrap .form__wrap input { width: 100%; height: 40px; font-size: 13px; }
+    .on-boarding__wrap .content__wrap .form__wrap input::placeholder { font-size: 13px; }
+    .on-boarding__wrap .content__wrap .form__wrap input::-ms-input-placeholder { font-size: 13px; }
+    .on-boarding__wrap .content__wrap .form__wrap button { width: 100%; height: 40px; margin-top: 16px; }
+    .on-boarding__wrap .content__wrap .desktop-img { margin: 21px 0 53px; }
+}

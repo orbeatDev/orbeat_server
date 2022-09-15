@@ -14,7 +14,7 @@ import java.util.Arrays;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/battle")
+@RequestMapping("/api/battle")
 public class MusicSelectController {
 
     private final MusicSelectService musicSelectService;

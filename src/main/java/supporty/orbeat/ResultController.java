@@ -19,7 +19,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @AllArgsConstructor
-@RequestMapping("/result")
+@RequestMapping("/api/result")
 public class ResultController {
 
     private final MusicRepository musicRepository;

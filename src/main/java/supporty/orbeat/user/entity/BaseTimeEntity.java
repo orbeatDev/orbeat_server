@@ -1,5 +1,6 @@
 package supporty.orbeat.user.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -19,10 +20,12 @@ import java.time.LocalDateTime;
 public class BaseTimeEntity implements Serializable {
 
     @CreatedDate
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
     @LastModifiedDate
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 
